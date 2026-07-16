@@ -1,0 +1,994 @@
+<!doctype html>
+<!--
+  CONFIG:
+  headingLevel: "h1" /* ЗМІНИТИ на h2 якщо цей блок НЕ перший на сторінці сайту */
+  Цей блок -- перший екран (hero) сторінки, тому H1 використовується один раз.
+-->
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ENTER -- Кав'ярня смаженої кави, напоїв та тістечок</title>
+    <meta
+      name="description"
+      content="ENTER -- кав'ярня смаженої кави, авторських напоїв, тістечок і швидкого Wi-Fi. Замовляйте онлайн."
+    />
+
+    <!-- Google Fonts: Fraunces (дисплей/заголовки) + Sora (текст/навігація) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Sora:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index_coffe.css" />
+
+    <style></style>
+  </head>
+  <body>
+    <!-- ===================== ЛОАДЕР (показ до повного завантаження відео) ===================== -->
+    <div class="loader" id="loader" role="status" aria-live="polite">
+      <div class="loader__wrap">
+        <svg
+          class="loader__cup"
+          viewBox="0 0 140 140"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <!-- Чашка кави, вигляд згори: блюдце, вінця, кава -->
+          <circle
+            cx="70"
+            cy="70"
+            r="62"
+            fill="none"
+            stroke="#3A2418"
+            stroke-width="2"
+            opacity="0.4"
+          />
+          <circle
+            cx="70"
+            cy="70"
+            r="48"
+            fill="none"
+            stroke="#F7F1E8"
+            stroke-width="2"
+            opacity="0.6"
+          />
+          <circle cx="70" cy="70" r="38" fill="#3A2418" />
+          <circle
+            cx="70"
+            cy="70"
+            r="38"
+            fill="none"
+            stroke="#C6893F"
+            stroke-width="2"
+          />
+          <!-- Ручка чашки -->
+          <path
+            d="M 118 60 Q 134 60 134 74 Q 134 88 118 88"
+            fill="none"
+            stroke="#F7F1E8"
+            stroke-width="3"
+            stroke-linecap="round"
+            opacity="0.6"
+          />
+        </svg>
+        <svg
+          class="loader__dots"
+          viewBox="0 0 140 140"
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <circle cx="70" cy="8" r="4" />
+          <circle cx="123" cy="35" r="3.4" opacity="0.85" />
+          <circle cx="132" cy="95" r="2.8" opacity="0.65" />
+          <circle cx="90" cy="132" r="3.2" opacity="0.5" />
+          <circle cx="20" cy="112" r="2.6" opacity="0.35" />
+        </svg>
+        <span class="loader__label" data-i18n="loaderLabel">Завантаження</span>
+      </div>
+    </div>
+
+    <!-- ===================== HERO / ГОЛОВНИЙ ЕКРАН ===================== -->
+    <section class="hero" id="top" aria-label="Головний екран кав'ярні ENTER">
+      <!-- Фонове відео: закільцьоване, беззвучне, автозапуск -->
+      <video
+        class="hero-video"
+        id="heroVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="img/cups_of_coffee.jpg"
+        aria-hidden="true"
+      >
+        <!-- Замінити шлях на реальний файл: кава.mp4 -->
+        <source src="img/Video_hero_coffee.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-overlay"></div>
+
+      <!-- ===================== NAVBAR ===================== -->
+      <nav class="navbar" id="navbar" aria-label="Головна навігація">
+        <a href="#top" class="navbar__logo" aria-label="ENTER -- на головну">
+          <svg
+            class="logo-mark"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            width="44"
+            height="44"
+            viewBox="0 0 360 360"
+            role="img"
+          >
+            <defs>
+              <linearGradient id="gold1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8C784" />
+                <stop offset="50%" stop-color="#C89B4A" />
+                <stop offset="100%" stop-color="#E8C784" />
+              </linearGradient>
+            </defs>
+            <circle cx="180" cy="180" r="172" fill="#2B1B12" />
+            <circle
+              cx="180"
+              cy="180"
+              r="160"
+              fill="none"
+              stroke="url(#gold1)"
+              stroke-width="2.5"
+            />
+            <circle
+              cx="180"
+              cy="180"
+              r="150"
+              fill="none"
+              stroke="url(#gold1)"
+              stroke-width="1"
+            />
+
+            <!-- coffee cup icon -->
+            <g transform="translate(180,152)">
+              <path
+                d="M -38 -6 L 38 -6 L 33 34 Q 30 52 0 52 Q -30 52 -33 34 Z"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="3.2"
+              />
+              <path
+                d="M 36 2 Q 58 2 58 20 Q 58 38 36 34"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="3.2"
+              />
+              <path
+                d="M -22 -14 Q -18 -30 -26 -40"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+              <path
+                d="M 0 -14 Q 4 -32 -4 -44"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+              <path
+                d="M 22 -14 Q 26 -30 18 -40"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+              <line
+                x1="-38"
+                y1="-6"
+                x2="38"
+                y2="-6"
+                stroke="url(#gold1)"
+                stroke-width="3.2"
+              />
+            </g>
+
+            <text
+              x="180"
+              y="252"
+              font-family="'Trajan Pro','Times New Roman',serif"
+              font-size="40"
+              letter-spacing="9"
+              fill="url(#gold1)"
+              text-anchor="middle"
+            >
+              ENTER
+            </text>
+            <line
+              x1="110"
+              y1="266"
+              x2="250"
+              y2="266"
+              stroke="url(#gold1)"
+              stroke-width="1.2"
+            />
+            <text
+              x="180"
+              y="284"
+              font-family="Arial, sans-serif"
+              font-size="12"
+              letter-spacing="4"
+              fill="#C89B4A"
+              text-anchor="middle"
+            >
+              COFFEE HOUSE
+            </text>
+          </svg>
+          <span class="logo-word">ENTER</span>
+        </a>
+
+        <ul class="navbar__links">
+          <li><a href="#top" data-i18n="navWelcome">Welcome</a></li>
+          <li><a href="#about" data-i18n="navAbout">Про нас</a></li>
+          <li><a href="#location" data-i18n="navLocation">Розташування</a></li>
+          <li>
+            <a href="#menu" data-i18n="navMenu">Замовити онлайн / Меню</a>
+          </li>
+          <li><a href="#contacts" data-i18n="navContacts">Контакти</a></li>
+        </ul>
+
+        <div class="navbar__actions">
+          <button
+            class="lang-toggle"
+            id="langToggle"
+            type="button"
+            aria-label="Змінити мову сайту"
+          >
+            <span id="langToggleLabel">EN</span>
+          </button>
+
+          <button
+            class="burger"
+            id="burgerBtn"
+            type="button"
+            aria-label="Відкрити меню навігації"
+            aria-expanded="false"
+            aria-controls="mobileMenu"
+          >
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+            <span class="burger__line"></span>
+          </button>
+        </div>
+      </nav>
+
+      <!-- ===================== МОБІЛЬНЕ МЕНЮ (overlay, стовпчик, центр) ===================== -->
+      <div
+        class="mobile-menu"
+        id="mobileMenu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Мобільна навігація"
+      >
+        <a href="#top" data-i18n="navWelcome">Welcome</a>
+        <a href="#about" data-i18n="navAbout">Про нас</a>
+        <a href="#location" data-i18n="navLocation">Розташування</a>
+        <a href="#menu" data-i18n="navMenu">Замовити онлайн / Меню</a>
+        <a href="#contacts" data-i18n="navContacts">Контакти</a>
+      </div>
+
+      <!-- ===================== ОСНОВНИЙ КОНТЕНТ HERO (заголовок / підзаголовок / CTA) ===================== -->
+      <div class="hero__content">
+        <h1 class="hero__title" data-i18n="heroTitle">
+          Кава, заради якої хочеться повертатися
+        </h1>
+        <p class="hero__subtitle" data-i18n="heroSubtitle">
+          Свіжообсмажена кава, авторські напої, домашня випічка та атмосфера,
+          створена для натхнення, роботи й теплих зустрічей.
+        </p>
+        <a href="#menu" class="btn-primary" data-i18n="ctaOrder"
+          >Замовити онлайн</a
+        >
+      </div>
+    </section>
+
+    <!-- ===================== ПРО НАС ===================== -->
+    <section class="about" id="about" aria-label="Про кав'ярню ENTER">
+      <div class="about__inner">
+        <div class="about__media">
+          <img
+            src="img/coffee_bar.jpg"
+            data-i18n-alt="aboutImgAlt"
+            alt="Команда бариста ENTER за роботою в кав'ярні"
+          />
+        </div>
+
+        <div class="about__content">
+          <span class="about__eyebrow" data-i18n="aboutEyebrow"
+            >5 років ENTER</span
+          >
+
+          <h2 class="about__title" data-i18n="aboutTitle">
+            Пʼять років ми варимо каву так, як варто
+          </h2>
+
+          <p class="about__lead" data-i18n="aboutLead">
+            Пʼять років тому ENTER почався з однієї барної стійки та ідеї варити
+            каву так, як вона того заслуговує. Сьогодні за цією стійкою працює
+            команда, що виросла разом із нами -- і продовжує рости.
+          </p>
+
+          <div class="about__more" id="aboutMore">
+            <div class="about__more-inner">
+              <p data-i18n="aboutMore1">
+                Ми відкрились у 2021 році як маленька кавʼярня на розі --
+                смажили каву самі, вручну обирали зерна й вчились на власних
+                помилках. За пʼять років команда зросла з трьох людей до
+                пʼятнадцяти бариста, обсмажувачів і кондитерів, які щодня
+                повторюють один і той самий ритуал: зробити чиюсь каву, тістечко
+                чи просто ранок трохи кращими.
+              </p>
+              <p data-i18n="aboutMore2">
+                Сьогодні ENTER -- це власна обсмажувальна станція, авторська
+                карта напоїв, домашня випічка щодня та простір, де швидкий Wi-Fi
+                і затишок значать так само багато, як і кава в чашці. Ми досі
+                вважаємо, що найкраща вершина -- це та, до якої ще йти, тож
+                продовжуємо рости далі.
+              </p>
+            </div>
+          </div>
+
+          <button
+            class="about__toggle"
+            id="aboutToggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="aboutMore"
+            data-i18n="aboutToggleClosed"
+            data-label-open="Мені цікаво"
+            data-label-close="Згорнути"
+          >
+            <span class="about__toggle-icon" aria-hidden="true"></span>
+            <span class="about__toggle-text">Мені цікаво</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== РОЗТАШУВАННЯ =====================
+       data-address -- єдине місце, де задається адреса кав'ярні.
+       З нього JS будує і посилання на карту, і кнопку "Прокласти маршрут". -->
+    <section
+      class="location"
+      id="location"
+      aria-label="Розташування кав'ярні ENTER"
+      data-address="Вінниця, вулиця Брацлавська, 68"
+    >
+      <div class="location__inner">
+        <span class="location__eyebrow" data-i18n="locationEyebrow"
+          >Знайти нас</span
+        >
+        <h2 class="location__title" data-i18n="locationTitle">Розташування</h2>
+
+        <div class="location__grid">
+          <!-- Ліва колонка: адреса, телефон, графік роботи -->
+          <div class="location__info">
+            <div class="location__item">
+              <svg
+                class="location__icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"
+                />
+                <circle cx="12" cy="9.5" r="2.4" />
+              </svg>
+              <span class="location__label" data-i18n="locationAddressLabel"
+                >Адреса</span
+              >
+              <span class="location__value" data-i18n="locationAddressValue"
+                >м. Вінниця, вул. Брацлавська, 68</span
+              >
+            </div>
+
+            <div class="location__item">
+              <svg
+                class="location__icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C10.5 20 4 13.5 4 6a2 2 0 0 1 1-2z"
+                />
+              </svg>
+              <span class="location__label" data-i18n="locationPhoneLabel"
+                >Телефон</span
+              >
+              <span class="location__value">
+                <a href="tel:+380987654321">098 765 43 21</a>
+              </span>
+            </div>
+
+            <div class="location__item">
+              <svg
+                class="location__icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7v5l3.5 2" />
+              </svg>
+              <span class="location__label" data-i18n="locationHoursLabel"
+                >Години роботи</span
+              >
+              <span class="location__value" data-i18n="locationHoursValue"
+                >Щодня з 07:00 до 22:00</span
+              >
+            </div>
+
+            <a
+              class="location__cta"
+              id="directionsLink"
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-i18n="locationCta"
+            >
+              <svg
+                class="location__cta-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <path d="M3 11l18-8-8 18-2-8-8-2z" />
+              </svg>
+              Прокласти маршрут
+            </a>
+          </div>
+
+          <!-- Права колонка: карта -->
+          <div class="location__map">
+            <iframe
+              id="locationMap"
+              title="Карта розташування кав'ярні ENTER"
+              src=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== МЕНЮ / ЗАМОВЛЕННЯ ОНЛАЙН ===================== -->
+    <section class="menu" id="menu" aria-label="Меню кав'ярні ENTER">
+      <div class="menu__inner">
+        <span class="menu__eyebrow" data-i18n="menuEyebrow"
+          >Замовлення онлайн</span
+        >
+        <h2 class="menu__title" data-i18n="menuTitle">Меню</h2>
+        <p class="menu__hint" data-i18n="menuHint">
+          Наведіть на страву, щоб побачити фото, опис і ціну. Клік -- додає
+          страву в кошик.
+        </p>
+
+        <div
+          class="menu__tabs"
+          id="menuTabs"
+          role="tablist"
+          aria-label="Категорії меню"
+        ></div>
+        <div id="menuPanels"></div>
+      </div>
+    </section>
+
+    <!-- ===================== ПРЕВʼЮ СТРАВИ (по центру екрана) ===================== -->
+    <div
+      class="menu-preview-overlay"
+      id="menuPreviewOverlay"
+      aria-hidden="true"
+    ></div>
+    <div
+      class="menu-preview-modal"
+      id="menuPreviewModal"
+      role="status"
+      aria-live="polite"
+    >
+      <div class="menu-preview-modal__photo">
+        <img id="menuPreviewImg" src="" alt="" />
+      </div>
+      <h3 class="menu-preview-modal__name" id="menuPreviewName"></h3>
+      <p class="menu-preview-modal__desc" id="menuPreviewDesc"></p>
+      <span class="menu-preview-modal__price" id="menuPreviewPrice"></span>
+    </div>
+
+    <!-- ===================== КНОПКА КОШИКА ===================== -->
+    <button
+      class="cart-button is-hidden"
+      id="cartButton"
+      type="button"
+      aria-haspopup="dialog"
+      aria-controls="cartOverlay"
+    >
+      <svg
+        class="cart-button__icon"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        aria-hidden="true"
+      >
+        <path d="M4 4h2l1.6 10.4a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 2-1.6L21 8H7" />
+        <circle cx="10" cy="20" r="1.4" />
+        <circle cx="17" cy="20" r="1.4" />
+      </svg>
+      <span data-i18n="cartButtonLabel">Кошик</span>
+      <span class="cart-button__count" id="cartCount">0</span>
+    </button>
+
+    <!-- ===================== ПАНЕЛЬ КОШИКА ===================== -->
+    <div
+      class="cart-overlay"
+      id="cartOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Кошик замовлення"
+    >
+      <div class="cart-panel">
+        <div class="cart-panel__header">
+          <h3 class="cart-panel__title" data-i18n="cartTitle">
+            Ваше замовлення
+          </h3>
+          <button
+            class="cart-panel__close"
+            id="cartClose"
+            type="button"
+            aria-label="Закрити кошик"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M5 5l14 14M19 5L5 19" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Вид 1: кошик -->
+        <div class="cart-panel__body" id="cartBodyView">
+          <div class="cart-panel__list" id="cartList"></div>
+
+          <div class="cart-panel__footer">
+            <span class="cart-panel__total-label" data-i18n="cartTotalLabel"
+              >Разом</span
+            >
+            <span class="cart-panel__total-value" id="cartTotal">0 грн</span>
+          </div>
+
+          <button
+            class="cart-panel__order-btn"
+            id="orderButton"
+            type="button"
+            data-i18n="orderButtonLabel"
+            disabled
+          >
+            Замовити
+          </button>
+        </div>
+
+        <!-- Вид 2: форма замовлення -->
+        <div class="order-form" id="orderFormView" hidden>
+          <button
+            class="order-form__back"
+            id="orderBack"
+            type="button"
+            data-i18n="orderBackLabel"
+          >
+            &larr; Назад до кошика
+          </button>
+
+          <form id="orderForm" novalidate>
+            <div class="form-field">
+              <label for="orderName" data-i18n="orderNameLabel">Ім'я</label>
+              <input
+                type="text"
+                id="orderName"
+                name="name"
+                autocomplete="name"
+                required
+              />
+              <span
+                class="form-error"
+                id="orderNameError"
+                data-i18n="orderNameError"
+                >Введіть, будь ласка, ваше імʼя</span
+              >
+            </div>
+
+            <div class="form-field">
+              <label for="orderPhone" data-i18n="orderPhoneLabel"
+                >Телефон</label
+              >
+              <input
+                type="tel"
+                id="orderPhone"
+                name="phone"
+                autocomplete="tel"
+                placeholder="+380 98 765 43 21"
+                required
+              />
+              <span
+                class="form-error"
+                id="orderPhoneError"
+                data-i18n="orderPhoneError"
+                >Перевірте номер телефону, наприклад +380987654321</span
+              >
+            </div>
+
+            <div class="form-field">
+              <label data-i18n="orderItemsLabel">Що замовляємо</label>
+              <div class="form-summary" id="orderSummary"></div>
+            </div>
+
+            <div class="form-field">
+              <label for="orderTime" data-i18n="orderTimeLabel"
+                >На яку годину виконати замовлення</label
+              >
+              <input
+                type="time"
+                id="orderTime"
+                name="time"
+                min="07:00"
+                max="22:00"
+                required
+              />
+              <span
+                class="form-error"
+                id="orderTimeError"
+                data-i18n="orderTimeError"
+                >Оберіть час у межах з 07:00 до 22:00</span
+              >
+            </div>
+
+            <button
+              type="submit"
+              class="btn-submit-order"
+              data-i18n="orderSubmitLabel"
+            >
+              Підтвердити замовлення
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ТОСТ ПІДТВЕРДЖЕННЯ ===================== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===================== КОНТАКТИ ===================== -->
+    <section
+      class="contacts"
+      id="contacts"
+      aria-label="Контакти кав'ярні ENTER"
+    >
+      <div class="contacts__inner">
+        <span class="contacts__eyebrow" data-i18n="contactsEyebrow"
+          >Звʼязатися з нами</span
+        >
+        <h2 class="contacts__title" data-i18n="contactsTitle">Контакти</h2>
+
+        <div class="contacts__info">
+          <div class="contacts__item">
+            <svg
+              class="contacts__icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z"
+              />
+              <circle cx="12" cy="9.5" r="2.4" />
+            </svg>
+            <span class="contacts__label" data-i18n="contactsAddressLabel"
+              >Адреса</span
+            >
+            <span class="contacts__value" data-i18n="contactsAddressValue"
+              >м. Вінниця, вул. Брацлавська, 68</span
+            >
+          </div>
+
+          <div class="contacts__item">
+            <svg
+              class="contacts__icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="9" />
+              <path d="M12 7v5l3.5 2" />
+            </svg>
+            <span class="contacts__label" data-i18n="contactsHoursLabel"
+              >Години роботи</span
+            >
+            <span class="contacts__value" data-i18n="contactsHoursValue"
+              >Щодня з 07:00 до 22:00</span
+            >
+          </div>
+
+          <div class="contacts__item">
+            <svg
+              class="contacts__icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v3a2 2 0 0 1-2 2C10.5 20 4 13.5 4 6a2 2 0 0 1 1-2z"
+              />
+            </svg>
+            <span class="contacts__label" data-i18n="contactsPhoneLabel"
+              >Телефон</span
+            >
+            <span class="contacts__value">
+              <a href="tel:+380961234567">096 123 45 67</a>
+            </span>
+          </div>
+        </div>
+
+        <span class="contacts__social-label" data-i18n="contactsSocialLabel"
+          >Ми в соціальних мережах</span
+        >
+
+        <div class="contacts__social">
+          <a
+            class="contacts__social-link"
+            href="https://instagram.com/enter.coffee"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="contacts__social-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <rect x="3.5" y="3.5" width="17" height="17" rx="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17" cy="7" r="1" fill="currentColor" stroke="none" />
+            </svg>
+            Instagram
+          </a>
+
+          <a
+            class="contacts__social-link"
+            href="https://t.me/entercoffee"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="contacts__social-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <path d="M21 4L3 11.5l6 2M21 4l-3 16-6-4.5M9 13.5V19l3-3.5" />
+            </svg>
+            Telegram
+          </a>
+
+          <a
+            class="contacts__social-link"
+            href="https://facebook.com/entercoffee"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="contacts__social-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              aria-hidden="true"
+            >
+              <path
+                d="M14 9V7a1.5 1.5 0 0 1 1.5-1.5H17V3h-2.5A4 4 0 0 0 10.5 7v2H8v3h2.5v9h3v-9H16l.5-3h-3z"
+              />
+            </svg>
+            Facebook
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ФУТЕР ===================== -->
+    <footer id="footer" class="footer" aria-label="Підвал сайту ENTER">
+      <h2 class="visually-hidden" data-i18n="footerHeading">
+        Підвал сайту ENTER
+      </h2>
+
+      <div class="footer__inner">
+        <!-- Логотип -->
+        <a href="#top" class="footer__logo" aria-label="ENTER -- на головну">
+          <svg
+            class="logo-mark"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            width="44"
+            height="44"
+            viewBox="0 0 360 360"
+            role="img"
+          >
+            <defs>
+              <linearGradient id="gold1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#E8C784" />
+                <stop offset="50%" stop-color="#C89B4A" />
+                <stop offset="100%" stop-color="#E8C784" />
+              </linearGradient>
+            </defs>
+            <circle cx="180" cy="180" r="172" fill="#2B1B12" />
+            <circle
+              cx="180"
+              cy="180"
+              r="160"
+              fill="none"
+              stroke="url(#gold1)"
+              stroke-width="2.5"
+            />
+            <circle
+              cx="180"
+              cy="180"
+              r="150"
+              fill="none"
+              stroke="url(#gold1)"
+              stroke-width="1"
+            />
+
+            <!-- coffee cup icon -->
+            <g transform="translate(180,152)">
+              <path
+                d="M -38 -6 L 38 -6 L 33 34 Q 30 52 0 52 Q -30 52 -33 34 Z"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="3.2"
+              />
+              <path
+                d="M 36 2 Q 58 2 58 20 Q 58 38 36 34"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="3.2"
+              />
+              <path
+                d="M -22 -14 Q -18 -30 -26 -40"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+              <path
+                d="M 0 -14 Q 4 -32 -4 -44"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+              <path
+                d="M 22 -14 Q 26 -30 18 -40"
+                fill="none"
+                stroke="url(#gold1)"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                opacity="0.85"
+              />
+              <line
+                x1="-38"
+                y1="-6"
+                x2="38"
+                y2="-6"
+                stroke="url(#gold1)"
+                stroke-width="3.2"
+              />
+            </g>
+
+            <text
+              x="180"
+              y="252"
+              font-family="'Trajan Pro','Times New Roman',serif"
+              font-size="40"
+              letter-spacing="9"
+              fill="url(#gold1)"
+              text-anchor="middle"
+            >
+              ENTER
+            </text>
+            <line
+              x1="110"
+              y1="266"
+              x2="250"
+              y2="266"
+              stroke="url(#gold1)"
+              stroke-width="1.2"
+            />
+            <text
+              x="180"
+              y="284"
+              font-family="Arial, sans-serif"
+              font-size="12"
+              letter-spacing="4"
+              fill="#C89B4A"
+              text-anchor="middle"
+            >
+              COFFEE HOUSE
+            </text>
+          </svg>
+          <span class="footer__logo-word">ENTER</span>
+        </a>
+
+        <!-- Стандартні попередження: копірайт та посилання -->
+        <div class="footer__legal">
+          <span class="footer__copyright" data-i18n="footerCopyright"
+            >&copy; 2026 ENTER. BiS Всі права захищено.</span
+          >
+          <div class="footer__links">
+            <a href="#" data-i18n="footerPrivacy">Політика конфіденційності</a>
+            <span class="footer__divider" aria-hidden="true">&middot;</span>
+            <a href="#" data-i18n="footerTerms">Умови використання</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+      <!-- скрипт для швидкого завантаження відео файлів -->
+    <script type="speculstionrules">
+      {
+        "prerender": [{
+          "where": {
+            "and": [
+             { "href_matches": "/*"},
+             { "not": { "href_mathes": "/logout"}},
+             { "not": { "selector_mathes": "[rel~=nofollow]" } },
+             { "not": { "selector_mathes": "[data-no-prerender]" } }
+            ]
+          },
+          "eagerness": "moderate"
+        }]
+      }
+    </script>
+
+    <script src="js/about_coffe.js"></script>
+    <script src="js/hero_coffe.js"></script>
+    <script src="js/location_coffe.js"></script>
+    <script src="js/menu_coffe.js"></script>
+    <script src="js/contacts_coffe.js"></script>
+    <script src="js/footer_coffe.js"></script>
+  </body>
+</html>

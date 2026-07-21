@@ -63,6 +63,25 @@
        (з hero-блоку) могла синхронно оновити і цей блок при обʼєднанні сторінки */
         window.aboutApplyLanguage = applyLanguage;
 
+                /* Якщо на сторінці вже є глобальний перемикач мови (з navbar hero-блоку),
+       підʼєднуємось до нього, щоб обидва блоки перемикались синхронно */
+        var globalLangToggle = document.getElementById("langToggle");
+        var globalLangToggleMobile =
+          document.getElementById("langToggleMobile");
+        function syncWithGlobalLang() {
+          var lang =
+            document.documentElement.getAttribute("lang") === "en"
+              ? "en"
+              : "uk";
+          applyLanguage(lang);
+        }
+        if (globalLangToggle) {
+          globalLangToggle.addEventListener("click", syncWithGlobalLang);
+        }
+        if (globalLangToggleMobile) {
+          globalLangToggleMobile.addEventListener("click", syncWithGlobalLang);
+        }
+
         /* ===================== РОЗКРИТТЯ ПОВНОГО ТЕКСТУ ===================== */
         var toggleBtn = document.getElementById("aboutToggle");
         var toggleText = toggleBtn.querySelector(".about__toggle-text");
@@ -85,22 +104,5 @@
 
         updateToggleLabel();
 
-        /* Якщо на сторінці вже є глобальний перемикач мови (з navbar hero-блоку),
-       підʼєднуємось до нього, щоб обидва блоки перемикались синхронно */
-        var globalLangToggle = document.getElementById("langToggle");
-        var globalLangToggleMobile =
-          document.getElementById("langToggleMobile");
-        function syncWithGlobalLang() {
-          var lang =
-            document.documentElement.getAttribute("lang") === "en"
-              ? "en"
-              : "uk";
-          applyLanguage(lang);
-        }
-        if (globalLangToggle) {
-          globalLangToggle.addEventListener("click", syncWithGlobalLang);
-        }
-        if (globalLangToggleMobile) {
-          globalLangToggleMobile.addEventListener("click", syncWithGlobalLang);
-        }
+
       })();
